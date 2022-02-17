@@ -63,6 +63,8 @@
             <th scope="col">price</th>
             <th scope="col">description</th>
             <th scope="col">quantity</th>
+            <th scope="col">Zamowic</th>
+            <th scope="col">Delete</th>
         </tr>
         </thead>
         <tbody>
@@ -73,6 +75,13 @@
             <td th:text="${stationery.price}"></td>
             <td th:text="${stationery.description}"></td>
             <td th:text="${stationery.quantity}"></td>
+
+            <td >
+                <a th:href="@{'/cart/add/' + ${stationery.id}}">Zamow</a>
+            </td>
+            <td >
+                <a th:href="@{'/item/delete/' + ${stationery.id}}">Usun</a>
+            </td>
         </tr>
         </tbody>
     </table>

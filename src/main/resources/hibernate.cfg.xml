@@ -24,7 +24,7 @@
 
         <property name="show_sql">true</property>
 
-        <property name="hbm2ddl.auto">none</property>
+        <property name="hbm2ddl.auto">create</property>
 
         <mapping class="pl.edu.wszib.book.store.model.Item"/>
         <mapping class="pl.edu.wszib.book.store.model.Order"/>
