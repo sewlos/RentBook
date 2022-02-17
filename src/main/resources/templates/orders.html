@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Jarir Bokstore</title>
+
+    <link rel="stylesheet" href="order.css">
+</head>
+<body>
+
+<div id="content">
+    <div class="order">
+        <div class="date">Data</div>
+        <div class="status">Status</div>
+        <div class="price">Wartość</div>
+    </div>
+    <div th:each="order : ${orders}" class="order">
+        <div th:text="${order.date}" class="date"></div>
+        <div th:text="${order.status}" class="status"></div>
+        <div th:text="${order.price}" class="price"></div>
+        <div th:each="orderPosition : ${order.orderPositions}" class="order-position">
+            <div th:text="${orderPosition.geItem().name}" class="title"></div>
+            <div th:text="${orderPosition.geItem().manufacturer.name}" class="manufacturer"></div>
+            <div th:text="${orderPosition.quantity}" class="quantity"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

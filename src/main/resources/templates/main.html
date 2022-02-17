@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" style="height: 100%">
+<head>
+    <title>Page Layout</title>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.css">
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css">
+
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+    <link rel="stylesheet" href="main.css">
+
+    <link rel="stylesheet" href="footer.css">
+
+    <link rel="stylesheet" href="register.css">
+
+    <link rel="stylesheet" href="error.css">
+
+    <script src="validator.js"></script>
+
+    <style>
+        .container-frame {
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 0.7fr 0.8fr 1fr;
+            gap: 0px 0px;
+            grid-auto-flow: row;
+            grid-template-areas:
+            "first second"
+            "first second"
+            "third third";
+        }
+
+        .third {
+            grid-area: third;
+        }
+
+        .second {
+            grid-area: second;
+        }
+
+        .first {
+            grid-area: first;
+        }
+
+
+        .container-frame {
+            height: calc(100% - 250px);
+            margin: 0;
+        }
+
+        /* For presentation only, no need to copy the code below */
+
+        /*.container-frame * {*/
+        /*    border: 1px solid grey;*/
+        /*    position: relative;*/
+        /*}*/
+
+        /*.container-frame *:after {*/
+        /*    content:attr(class);*/
+        /*    position: absolute;*/
+        /*    top: 0;*/
+        /*    left: 0;*/
+        /*    width: 100%;*/
+        /*    height: 100%;*/
+        /*    display: grid;*/
+        /*    align-items: center;*/
+        /*    justify-content: center;*/
+        /*}*/
+
+    </style>
+</head>
+
+<body style="height: 100%">
+
+<!-- Header Section -->
+<header>
+
+</header>
+
+<!-- Menu Navigation Bar -->
+<div class="menu">
+
+    <a href="/main">B&B</a>
+    <a href="/userAccount">USER ACCOUNT</a>
+    <a href="/cart">CART</a>
+    <a href="/orders">Order</a>
+
+
+    <div class="menu-log">
+        <a href="/logout">LOGOUT</a>
+    </div>
+
+
+</div>
+
+<!-- Body section -->
+
+<!--<div class="body_sec">-->
+<div class="container-frame">
+    <div class="third">
+        <h5 style="text-align: center">Aktualności</h5>
+
+        <div class="row justify-content-md-center" style="margin: 0 0 0 0">
+            <div class="card" style="width: 400px; margin: 10px" th:each="actual : ${actuals}">
+                <div class="card-body" th:if="${actual.manufacturer != null }">
+                    <h5 class="card-title" th:text="${'nazwa produktu: ' + actual.name}"></h5>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${'cena produktu: ' + actual.price}"></h6>
+                    <p class="card-text" th:text="${'Producent: ' + actual.manufacturer.name}"></p>
+                    <a class="card-link" th:href="@{'/cart/add/' + ${actual.id}}">Zamow</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="second">
+        <h5 style="text-align: center">Polecamy</h5>
+
+        <div class="row justify-content-md-center" style="margin: 0 0 0 0">
+            <div class="card" style="width: 300px; margin: 10px"  th:each="offer : ${offers}">
+                <div class="card-body" th:if="${offer.manufacturer != null }">
+                    <h5 class="card-title" th:text="${'nazwa produktu: ' + offer.name}"></h5>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${'cena produktu: ' + offer.price}">Card subtitle</h6>
+
+                    <p class="card-text"   th:text="${'Producent: ' + offer.manufacturer.name}"></p>
+                    <a class="card-link" th:href="@{'/cart/add/' + ${offer.id}}">Zamow</a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="first">
+        <div class="row justify-content-md-center" style="margin: 0 0 0 0">
+
+            <div class="dropdown" style="margin: 10px 10px 10px 10px">
+                <a class="btn btn-success" href="/item/book/show" style="margin: 0 0 0 0">
+                    Ksiazki
+                </a>
+            </div>
+
+            <div class="dropdown" style="margin: 10px 10px 10px 10px">
+                <a class="btn btn-success" href="/item/stationery/show" style="margin: 0 0 0 0">
+                    Artykuły biurowe
+                </a>
+            </div>
+
+
+
+            <div class="dropdown" style="margin: 10px 10px 10px 10px">
+                <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton_third"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Popularni autorzy
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton_third" >
+                    <a class="dropdown-item" th:each="author : ${authors}" th:href="@{'/manufacturer/get/'+ ${author.id}}" th:text="${author.name}"></a>
+                </div>
+            </div>
+
+        </div>
+
+        <h1>
+            Gorący strzał
+        </h1>
+
+
+        <div class="card" style="width: 400px; margin: 10px">
+            <div class="card-body" th:if="${hotItem.manufacturer != null }">
+                <h5 class="card-title" th:text="${'nazwa produktu: ' + hotItem.name}"></h5>
+                <h6 class="card-subtitle mb-2 text-muted" th:text="${'cena produktu: ' + hotItem.price}"></h6>
+                <p class="card-text" th:text="${'Producent: ' + hotItem.manufacturer.name}">Producent</p>
+                <a class="card-link" th:href="@{'/cart/add/' + ${hotItem.id}}">Zamow</a>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--</div>-->
+
+<!-- Footer Section -->
+<div class="footer-clean">
+    <footer style="padding-bottom: 0px">
+        <div class="container">
+            <div class="row justify-content-center" style="margin: 0 0 0 0">
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Web design</a></li>
+                        <li><a href="#">Development</a></li>
+                        <li><a href="#">Hosting</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>About</h3>
+                    <ul>
+                        <li><a href="#">Company</a></li>
+                        <li><a href="#">Team</a></li>
+                        <li><a href="#">Legacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 col-md-3 item">
+                    <h3>Careers</h3>
+                    <ul>
+                        <li><a href="#">Job openings</a></li>
+                        <li><a href="#">Employee success</a></li>
+                        <li><a href="#">Benefits</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i
+                        class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a
+                        href="#"><i class="icon ion-social-instagram"></i></a>
+                    <p class="copyright">Company Name © 2018</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>

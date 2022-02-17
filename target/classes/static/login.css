@@ -1,0 +1,84 @@
+#login-form {
+    height: calc(100% - 100px);
+    width: 700px;
+    margin: 30px auto;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+}
+
+#login-form input[type="text"], #login-form input[type="password"], #login-form input[type="number"] {
+    width: 80%;
+    margin: 5px 0;
+    font-size: 26px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    transition: border 0.5s;
+}
+
+#login-form select {
+    width: 80%;
+    margin: 5px 0;
+    font-size: 26px;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    transition: border 0.5s;
+}
+
+#login-form input[type="text"]:hover, #login-form input[type="password"]:hover {
+    border: 1px solid red;
+}
+
+#login-form input[type="submit"] {
+    background: white;
+    border: 1px solid black;
+    margin: 10px 0;
+    border-radius: 10px;
+    font-size: 26px;
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: border, color 0.5s;
+    transition: background 0.5s;
+}
+
+#login-form input[type="submit"]:hover {
+    background: red;
+    border: 1px solid red;
+    color: white;
+}
+
+#login-form a {
+    background: white;
+    border: 1px solid black;
+    margin: 10px 0;
+    border-radius: 10px;
+    font-size: 26px;
+    color: black;
+    padding: 5px 15px;
+    cursor: pointer;
+    transition: border, color 0.5s;
+    transition: background 0.5s;
+}
+
+#login-form a:hover {
+    background: red;
+    border: 1px solid red;
+    color: white;
+}
+
+#login-form span h1 {
+    color: #a1a1a1;
+    /*-webkit-text-stroke: 1px black;*/
+}
+
+
+/*#form_login {*/
+/*    height:calc(100% - 250px);*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    flex-direction: column;*/
+/*}*/
